@@ -13,8 +13,12 @@ class CreateProjectsTable extends Migration
      */
     public function up()
     {
-        Schema::create('projects', function (Blueprint $table) {
+        Schema::create("projects", function (Blueprint $table) {
             $table->id();
+            $table->string("name");
+            $table->string("slug");
+            $table->unsignedBigInteger("active_collab_id")->unique();
+            $table->integer("monthly_hours");
             $table->timestamps();
         });
     }
@@ -26,6 +30,6 @@ class CreateProjectsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('projects');
+        Schema::dropIfExists("projects");
     }
 }
